@@ -20,7 +20,23 @@ final class PlayShakespearePackageTests: XCTestCase {
 
 extension PlayShakespearePackageTests {
     
-    func loadPlay(play: PlayPaths) -> URL? {
+    //TODO: fails "ps_first_folio_frontmatter"
+    func testtt() {
+        PSPath.allCases.forEach { path in
+            guard let url:URL = Bundle.module.url(forResource: path.rawValue, withExtension: "xml"),
+                  let xml:PSPlay = try? decoder.decode(PSPlay.self, from: Data(contentsOf: url)) else {
+                print(path.rawValue)
+                return XCTFail("[XXXXXX] Failed to load play - play:\(path.rawValue)")
+            }
+            return
+        }
+    }
+    
+}
+
+extension PlayShakespearePackageTests {
+    
+    func loadPlay(play: PSPath) -> URL? {
         let url:URL? = Bundle.module.url(forResource: play.rawValue, withExtension: "xml")
         guard let url = url else {
             XCTFail("[XXXXXX] loadPlay Failed: \(play.rawValue)")
@@ -31,7 +47,7 @@ extension PlayShakespearePackageTests {
     
     func items(roots:[String] = ["play", "poem"], path: @escaping (XML.Accessor) -> [XML.Accessor] = { [$0] }) -> [String] {
         
-        return PlayPaths.allCases.compactMap({ play in
+        return PSPath.allCases.compactMap({ play in
             if let url:URL = loadPlay(play: play),
                let xml = try? XML.parse(Data(contentsOf: url)) {
                 return xml
@@ -46,7 +62,7 @@ extension PlayShakespearePackageTests {
     }
     
     
-    func items(play: PlayPaths, roots:[String] = ["play", "poem"], path: @escaping (XML.Accessor) -> [XML.Accessor] = { [$0] }) -> [String] {
+    func items(play: PSPath, roots:[String] = ["play", "poem"], path: @escaping (XML.Accessor) -> [XML.Accessor] = { [$0] }) -> [String] {
         if let url:URL = loadPlay(play: play),
            let xml = try? XML.parse(Data(contentsOf: url)) {
             
@@ -61,7 +77,7 @@ extension PlayShakespearePackageTests {
     
     func test<T: Codable>(roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) {
         let items = items(roots: roots, path: { path($0) })
-        guard !items.isEmpty else { return                     XCTFail("[XXXXXX] xml parse failed")}
+        guard !items.isEmpty else { return XCTFail("[XXXXXX] xml parse failed")}
         items.forEach { item in
             let xml:T? = try? decoder.decode(T.self, from: Data(item.replacingNonAsciiAmpersands().utf8))
             if xml == nil {
@@ -70,7 +86,7 @@ extension PlayShakespearePackageTests {
         }
     }
     
-    func test<T: Codable>(play:PlayPaths, roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) {
+    func test<T: Codable>(play:PSPath, roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) {
         let items = items(play: play, roots: roots, path: { path($0) })
         items.forEach { item in
             let xml:T? = try? decoder.decode(T.self, from: Data(item.replacingNonAsciiAmpersands().utf8))
@@ -121,7 +137,7 @@ extension PlayShakespearePackageTests {
 extension PlayShakespearePackageTests {
     
     func testAllPoems() {
-        test(roots: ["poem"], type: Poem.self)
+        test(roots: ["poem"], type: PSPlay.self)
     }
     
     func testAllPoemintro() {
@@ -141,7 +157,7 @@ extension PlayShakespearePackageTests {
 extension PlayShakespearePackageTests {
     
     func testAllPlays() {
-        test(roots: ["play"], type: Play.self)
+        test(roots: ["play"], type: PSPlay.self)
     }
     
     func testAllPerformances() {

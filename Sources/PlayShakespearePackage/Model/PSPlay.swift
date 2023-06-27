@@ -8,24 +8,28 @@ import Foundation
 import XMLCoder
 
 // MARK: - PlayClass
-struct Play: Codable, DynamicNodeEncoding {
+struct PSPlay: Codable, DynamicNodeEncoding {
     let title: Title
     let playwrights: Playwrights
     let edition: String?
     let editions: Editions?
     let performances: Performances?
-    let personae: Personae
+    let personae: Personae?
     let act: [Act]
     let endpersonae: Endpersonae?
     let epilogue: Epilogue?
     let finis: Finis?
     let sources: Sources?
+    let poemintro: Poemintro?
+    let poembody: Poembody?
+    let sonnets: Sonnets?
     let sourcedetails: Sourcedetails
     let variant, unique: String
     let numberOfLines, trans: String?
 
     enum CodingKeys: String, CodingKey {
         case title, playwrights, edition, editions, performances, personae, act, endpersonae, epilogue, finis, sources, sourcedetails
+        case poemintro, poembody, sonnets
         case variant = "variant"
         case unique = "unique"
         case numberOfLines = "numberOfLines"
@@ -34,10 +38,10 @@ struct Play: Codable, DynamicNodeEncoding {
     
     static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {
-        case Play.CodingKeys.variant: return .attribute
-        case Play.CodingKeys.unique: return .attribute
-        case Play.CodingKeys.numberOfLines: return .attribute
-        case Play.CodingKeys.trans: return .attribute
+        case PSPlay.CodingKeys.variant: return .attribute
+        case PSPlay.CodingKeys.unique: return .attribute
+        case PSPlay.CodingKeys.numberOfLines: return .attribute
+        case PSPlay.CodingKeys.trans: return .attribute
             default: return .element
         }
     }

@@ -30,10 +30,10 @@ struct Poem: Codable, DynamicNodeEncoding {
     
     static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {
-        case Play.CodingKeys.variant: return .attribute
-        case Play.CodingKeys.unique: return .attribute
-        case Play.CodingKeys.numberOfLines: return .attribute
-        case Play.CodingKeys.trans: return .attribute
+        case PSPlay.CodingKeys.variant: return .attribute
+        case PSPlay.CodingKeys.unique: return .attribute
+        case PSPlay.CodingKeys.numberOfLines: return .attribute
+        case PSPlay.CodingKeys.trans: return .attribute
             default: return .element
         }
     }
