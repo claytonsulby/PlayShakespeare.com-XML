@@ -289,11 +289,12 @@ struct Line: Codable, DynamicNodeEncoding {
     let type: String?
     let part: String?
     let syllables:String?
-    let dropcap: Dropcap?
+    let dropcap: [Dropcap]?
     let name:[Name]?
     let emph: [Emph]?
     let rend: String?
     let order: String?
+    let nameref: String?
 
     enum CodingKeys: String, CodingKey {
         case globalnumber = "globalnumber"
@@ -312,6 +313,7 @@ struct Line: Codable, DynamicNodeEncoding {
         case emph
         case rend = "rend"
         case order = "order"
+        case nameref
     }
     
     static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
@@ -321,7 +323,7 @@ struct Line: Codable, DynamicNodeEncoding {
         case Line.CodingKeys.rhyme: return .attribute
         case Line.CodingKeys.form: return .attribute
         case Line.CodingKeys.offset: return .attribute
-        case Line.CodingKeys.lb: return .attribute
+        case Line.CodingKeys.lb: return .both
         case Line.CodingKeys.type: return .attribute
         case Line.CodingKeys.part: return .attribute
         case Line.CodingKeys.syllables: return .attribute
@@ -726,9 +728,10 @@ struct Playsource: Codable {
 
 // MARK: - Title
 struct Title: Codable, DynamicNodeEncoding {
-    let short: String
+    let short: String?
     let text: String?
-    let abbr, lb: String?
+    let abbr: String?
+    let lb: [String]?
 
     enum CodingKeys: String, CodingKey {
         case lb

@@ -24,7 +24,7 @@ extension PlayShakespearePackageTests {
     func testtt() {
         PSPath.allCases.forEach { path in
             guard let url:URL = Bundle.module.url(forResource: path.rawValue, withExtension: "xml"),
-                  let xml:PSPlay = try? decoder.decode(PSPlay.self, from: Data(contentsOf: url)) else {
+                  let _:PSPlay = try? decoder.decode(PSPlay.self, from: Data(contentsOf: url)) else {
                 print(path.rawValue)
                 return XCTFail("[XXXXXX] Failed to load play - play:\(path.rawValue)")
             }
@@ -32,6 +32,47 @@ extension PlayShakespearePackageTests {
         }
     }
     
+    func testRemoveKeysWithinKey() {
+        let string = """
+        <a>
+        <line globalnumber="2024" number="216" lb="2" lb="" lb="v   r" form="verse"><lb></lb>We have our gold, Mistress Alice, <foreign xml:lang="fr">adieu</foreign>.</line>
+        <line globalnumber="1297" number="141">.<emph>which is loſt, be not found</emph></line>
+        <line globalnumber=\"455\" form=\"prose\" number=\"38\">Sweet  Parolles!<foreign xml:lang=\"fr\">Monsieur</foreign></line>
+        </a>
+        """
+
+        if string.removingXMLKeys(within: "line").contains("foreign") {
+            XCTFail("contains foreign")
+        }
+    }
+    
+    @available(iOS 16.0, *)
+    func testGetAllKeys() {
+        let x = Array(PSPath.allCases.compactMap { path in
+            let url:URL = Bundle.module.url(forResource: path.rawValue, withExtension: "xml")!
+            let data = try? Data(contentsOf: url)
+            let string = String(data: data!, encoding: .utf8)!
+            return string.allXMLKeys()
+        }.uniqueElementsSet)
+        print(x)
+    }
+    
+    func testRemoveLbForeignReciteEmphRendRenderDropcap() {
+        let encoder = XMLEncoder()
+        
+        if let a = test(roots: ["play", "poem"], type: PSPlay.self) {
+            
+            a.forEach { play in
+                if let data = try? encoder.encode(play),
+                   let string = String(data: data, encoding: .utf8) {
+                    
+                    if string.contains("<lb>") {
+                        XCTFail("contains lb")
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension PlayShakespearePackageTests {
@@ -75,28 +116,40 @@ extension PlayShakespearePackageTests {
         return []
     }
     
-    func test<T: Codable>(roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) {
+    func test<T: Codable>(roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) -> [T]? {
         let items = items(roots: roots, path: { path($0) })
-        guard !items.isEmpty else { return XCTFail("[XXXXXX] xml parse failed")}
-        items.forEach { item in
-            let xml:T? = try? decoder.decode(T.self, from: Data(item.replacingNonAsciiAmpersands().utf8))
+        guard !items.isEmpty else {
+            XCTFail("[XXXXXX] xml parse failed")
+            return nil
+        }
+        return items.compactMap { item in
+            let str = item
+                .removingXMLKeys(within: "line")
+                .removingXMLKeys(removing: "lb", "nolb", "rend", "render", "emph", "bold", "dropcap", "recite", "foreign")
+                .replacingNonAsciiAmpersands()
+            let xml:T? = try? decoder.decode(T.self, from: Data(str.utf8))
             if xml == nil {
                 XCTFail("[XXXXXX] decode failed - type:\(T.self) item:\(item)")
             }
+            return xml
         }
     }
     
-    func test<T: Codable>(play:PSPath, roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) {
+    func test<T: Codable>(play:PSPath, roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> [XML.Accessor]) -> [T]? {
         let items = items(play: play, roots: roots, path: { path($0) })
-        items.forEach { item in
-            let xml:T? = try? decoder.decode(T.self, from: Data(item.replacingNonAsciiAmpersands().utf8))
+        return items.compactMap { item in
+            let str = item
+                .removingXMLKeys(within: "line")
+                .replacingNonAsciiAmpersands()
+            let xml:T? = try? decoder.decode(T.self, from: Data(str.utf8))
             if xml == nil {
                 XCTFail("[XXXXXX] decode failed - play:\(play.rawValue) type:\(T.self) item:\(item)")
             }
+            return xml
         }
     }
     
-    func test<T: Codable>(roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> XML.Accessor = { $0 }) {
+    func test<T: Codable>(roots:[String] = ["play", "poem"], type: T.Type, path: @escaping (XML.Accessor) -> XML.Accessor = { $0 }) -> [T]? {
         return test(roots: roots, type: type.self, path: { [path($0)] })
     }
 }

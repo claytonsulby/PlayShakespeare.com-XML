@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "27ACB154-870F-494E-A2FD-13F0E01FE236"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "587C77D2-5835-46E4-95F2-FF37D66EF872"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "test(roots:type:path:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "587C77D2-5835-46E4-95F2-FF37D66EF872 - 6bfa5a280cc9368"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in PlayShakespearePackageTests.PlayShakespearePackageTests.test&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(roots: Swift.Array&lt;Swift.String&gt;, type: &#x3c4;_0_0.Type, path: (SwiftyXMLParser.XML.Accessor) -&gt; Swift.Array&lt;SwiftyXMLParser.XML.Accessor&gt;) -&gt; Swift.Optional&lt;Swift.Array&lt;&#x3c4;_0_0&gt;&gt;"
+                  moduleName = "PlayShakespearePackageTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/clay/Documents/Code/Xcode/PlayShakespearePackage/Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "760">
+               </Location>
+               <Location
+                  uuid = "587C77D2-5835-46E4-95F2-FF37D66EF872 - 71858c0131126128"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt; in PlayShakespearePackageTests.PlayShakespearePackageTests.test&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(play: PlayShakespearePackage.PSPath, roots: Swift.Array&lt;Swift.String&gt;, type: &#x3c4;_0_0.Type, path: (SwiftyXMLParser.XML.Accessor) -&gt; Swift.Array&lt;SwiftyXMLParser.XML.Accessor&gt;) -&gt; Swift.Optional&lt;Swift.Array&lt;&#x3c4;_0_0&gt;&gt;"
+                  moduleName = "PlayShakespearePackageTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/clay/Documents/Code/Xcode/PlayShakespearePackage/Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "477">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88C912CA-5989-4D90-AFBF-DE13CB775407"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "testRemoveLbForeignReciteEmphRendRenderDropcap()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "88C912CA-5989-4D90-AFBF-DE13CB775407 - b5f21c69c8a2ab2f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PlayShakespearePackage.PSPlay) -&gt; () in PlayShakespearePackageTests.PlayShakespearePackageTests.testRemoveLbForeignReciteEmphRendRenderDropcap() -&gt; ()"
+                  moduleName = "PlayShakespearePackageTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/clay/Documents/Code/Xcode/PlayShakespearePackage/Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "3519">
+               </Location>
+               <Location
+                  uuid = "88C912CA-5989-4D90-AFBF-DE13CB775407 - b5f21c69c8a2a9f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PlayShakespearePackage.PSPlay) -&gt; () in PlayShakespearePackageTests.PlayShakespearePackageTests.testRemoveLbForeignReciteEmphRendRenderDropcap() -&gt; ()"
+                  moduleName = "PlayShakespearePackageTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/clay/Documents/Code/Xcode/PlayShakespearePackage/Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "3519">
+               </Location>
+               <Location
+                  uuid = "88C912CA-5989-4D90-AFBF-DE13CB775407 - 83fa94f21aeafc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlayShakespearePackageTests.PlayShakespearePackageTests.loadPlay(play: PlayShakespearePackage.PSPath) -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  moduleName = "PlayShakespearePackageTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/clay/Documents/Code/Xcode/PlayShakespearePackage/Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "238">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15E04639-0DD1-4A13-8806-7C8AADA6583C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tests/PlayShakespearePackageTests/PlayShakespearePackageTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "testRemoveKeysWithinKey()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
